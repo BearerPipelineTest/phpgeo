@@ -80,7 +80,7 @@ The `Makefile` provides a helper target for generating the complete documentatio
 make docs
 ```
 
-*Daux* can also be run from its official Docker image:
+*Daux* can also be run directly from its official Docker image (leads to the same result as `make docs`):
 
 ``` shell
 docker run --rm -it -v "$(pwd)":/phpgeo -w /phpgeo daux/daux.io daux generate -d build/daux
