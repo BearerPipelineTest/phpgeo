@@ -10,7 +10,7 @@ docs: daux apidocs
 daux:
 	rm -Rf build/daux
 	mkdir -p build/daux
-	docker run --rm -it -v "$(pwd)":/phpgeo -w /phpgeo daux/daux.io daux generate -d build/daux generate -d build/daux
+	docker run --rm -it -v "$(shell pwd)":/phpgeo -w /phpgeo daux/daux.io daux generate -d build/daux
 
 .PHONY: apidocs
 apidocs:

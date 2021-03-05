@@ -1,10 +1,13 @@
 {
     "name": "mjaschen/phpgeo",
+    "type": "library",
     "description": "Simple Yet Powerful Geo Library",
     "keywords": [
         "distance",
         "area",
+        "bearing",
         "coordinate",
+        "douglas-peucker",
         "geo",
         "gis",
         "bounds",
@@ -26,7 +29,7 @@
         "perpendicular"
     ],
     "homepage": "https://phpgeo.marcusjaschen.de/",
-    "type": "library",
+    "readme": "README.md",
     "license": "MIT",
     "authors": [
         {
@@ -35,43 +38,43 @@
             "homepage": "https://www.marcusjaschen.de/"
         }
     ],
-    "readme": "README.md",
-    "support" : {
-        "issues" : "https://github.com/mjaschen/phpgeo/issues",
-        "docs": "https://phpgeo.marcusjaschen.de/Installation.html",
-        "email" : "mjaschen@gmail.com"
-    },
     "require": {
         "php": ">=7.2"
+    },
+    "require-dev": {
+        "ergebnis/composer-normalize": "^2.13",
+        "phpunit/phpunit": "^8.0",
+        "squizlabs/php_codesniffer": "^3.5",
+        "vimeo/psalm": "^4.6"
     },
     "autoload": {
         "psr-4": {
             "Location\\": "src/"
         }
     },
-    "require-dev": {
-        "phpunit/phpunit": "^8.0",
-        "vimeo/psalm": "^4.6",
-        "squizlabs/php_codesniffer": "^3.5"
-    },
     "scripts": {
+        "ci": [
+            "@ci:static",
+            "@ci:dynamic"
+        ],
         "ci:composer-validate": "composer validate --no-check-all --no-check-lock --strict",
+        "ci:dynamic": [
+            "@ci:tests"
+        ],
         "ci:lint": "find src tests -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l",
         "ci:psalm": "./vendor/bin/psalm",
         "ci:sniff": "./vendor/bin/phpcs src tests",
-        "ci:tests": "./vendor/bin/phpunit tests/",
         "ci:static": [
             "@ci:composer-validate",
             "@ci:lint",
             "@ci:psalm",
             "@ci:sniff"
         ],
-        "ci:dynamic": [
-            "@ci:tests"
-        ],
-        "ci": [
-            "@ci:static",
-            "@ci:dynamic"
-        ]
+        "ci:tests": "./vendor/bin/phpunit tests/"
+    },
+    "support": {
+        "email": "mjaschen@gmail.com",
+        "issues": "https://github.com/mjaschen/phpgeo/issues",
+        "docs": "https://phpgeo.marcusjaschen.de/Installation.html"
     }
 }
